@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HealthGuard AI X</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 { color: #22c55e; }
+
+    input, button {
+      padding: 12px;
+      margin: 10px;
+      width: 85%;
+      border-radius: 10px;
+      border: none;
+    }
+
+    button {
+      background: #22c55e;
+      font-weight: bold;
+    }
+
+    #chat {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .msg {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    .user { background: #334155; }
+    .bot { background: #1e293b; }
+  </style>
+</head>
+
+<body>
+
+<h1>🧠 HealthGuard AI X</h1>
+<p>Your Smart Healthcare Assistant</p>
+
+<input id="input" placeholder="Type symptoms (fever, cough...)">
+<button onclick="analyze()">Analyze</button>
+
+<div id="chat"></div>
+
+<script>
+function analyze() {
+  let input = document.getElementById("input").value.toLowerCase();
+  let chat = document.getElementById("chat");
+
+  chat.innerHTML += `<div class='msg user'>🧑 ${input}</div>`;
+
+  let disease = "General Condition";
+  let risk = "Low";
+  let advice = "Monitor your symptoms.";
+
+  if (input.includes("fever") && input.includes("cough") && input.includes("fatigue")) {
+    disease = "Flu / Viral Infection";
+    risk = "Medium";
+    advice = "Take rest and monitor temperature.";
+  }
+
+  else if (input.includes("sneezing") && input.includes("runny nose")) {
+    disease = "Common Cold";
+    risk = "Low";
+    advice = "Stay warm and hydrated.";
+  }
+
+  else if (input.includes("dry cough") && input.includes("fever")) {
+    disease = "COVID-like Infection";
+    risk = "High";
+    advice = "Isolate and consult doctor.";
+  }
+
+  else if (input.includes("blood") && input.includes("mucus")) {
+    disease = "Serious Lung Infection / TB";
+    risk = "High";
+    advice = "Immediate medical attention required.";
+  }
+
+  else if (input.includes("chest pain")) {
+    disease = "Heart / Lung Risk";
+    risk = "High";
+    advice = "Urgent doctor consultation needed.";
+  }
+
+  else if (input.includes("hair loss")) {
+    disease = "Stress / Nutrition Deficiency";
+    risk = "Low";
+    advice = "Improve diet and reduce stress.";
+  }
+
+  else if (input.includes("eye pain")) {
+    disease = "Eye Strain / Migraine";
+    risk = "Low";
+    advice = "Reduce screen time.";
+  }
+
+  else if (input.includes("leg pain") && input.includes("fatigue")) {
+    disease = "Vitamin Deficiency";
+    risk = "Low";
+    advice = "Check nutrition.";
+  }
+
+  else if (input.includes("faint") || input.includes("dizziness")) {
+    disease = "Low BP / Weakness";
+    risk = "Medium";
+    advice = "Stay hydrated.";
+  }
+
+  else if (input.includes("tonsil")) {
+    disease = "Tonsillitis";
+    risk = "Medium";
+    advice = "Warm fluids and rest.";
+  }
+
+  let reply = `
+  🤖 <b>AI Analysis Result:</b><br><br>
+  <b>Possible Condition:</b> ${disease} <br>
+  <b>Risk Level:</b> ${risk} <br>
+  <b>Advice:</b> ${advice} <br><br>
+
+  🌿 <b>General Health Advice:</b><br>
+  ✔ Drink water 💧<br>
+  ✔ Do meditation 🧘<br>
+  ✔ Take rest 😴<br>
+  ✔ Exercise 🏃<br>
+  `;
+
+  chat.innerHTML += `<div class='msg bot'>${reply}</div>`;
+}
+</script>
+
+</body>
+</html>
